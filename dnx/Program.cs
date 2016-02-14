@@ -16,11 +16,14 @@ namespace ActorBenchmark
             Console.WriteLine(x);
             DateTime dt2 = DateTime.Now;
             Console.WriteLine("Sync sec: {0:0.000}", (dt2 - dt).TotalSeconds);
+            for (var c = 0; c < 25; c++) {
+            dt2 = DateTime.Now;
             var x2 = Task.Run(() => skynetAsync(0, limit, 10));
             x2.Wait();
             DateTime dt3 = DateTime.Now;
             Console.WriteLine(x2.Result);
             Console.WriteLine("Async sec: {0:0.000}", (dt3 - dt2).TotalSeconds);
+            }
             //Console.ReadLine();
         }
         static object taskLock = new object();
